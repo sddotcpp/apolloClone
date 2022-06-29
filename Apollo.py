@@ -263,8 +263,8 @@ class Apollo:
         self.collective = []
         self.row = []
 
+        self.headless(True) # True means it will not open a browser while runining, and flase is the opposite
         self.open()
-        # self.headless(True)
         self.login()
         self.openSearch()
         for query in queriesList:
@@ -280,7 +280,9 @@ class Apollo:
                 
             for ele in FilteredData: 
                 self.row.append(ele)
-                emails = self.getSdata(ele[1])
+                
+                emails = self.getSdata(ele[1], True) # True --> if you want to use credits
+                
                 if len(emails) > 0:
                     for email in emails:
                         self.row[0].append(email)
@@ -296,4 +298,4 @@ class Apollo:
 
 inst = Apollo('amol.agarwal@goodera.com', 'DataEntry@1234')
 
-inst.collected(inst.read("test.xlsx"), 1)
+inst.collected(inst.read("test.xlsx"), 1) #The number of search reults per each search
